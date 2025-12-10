@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDD6gGxMy4_ssGjXvU5i16kJ9nIArRPixU",
+    apiKey:import.meta.env.VITE_API_KEY,
     authDomain: "carrier-cb914.firebaseapp.com",
     projectId: "carrier-cb914",
     storageBucket: "carrier-cb914.firebasestorage.app",
@@ -11,7 +11,7 @@ const firebaseConfig = {
     appId: "1:425653750486:web:d79e10a0c5076858c25777",
     measurementId: "G-BNPGF5ZFPS"
 };
-
+// AIzaSyDD6gGxMy4_ssGjXvU5i16kJ9nIArRPixU
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
