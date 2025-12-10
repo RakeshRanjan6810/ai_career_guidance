@@ -3,15 +3,15 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey:import.meta.env.VITE_API_KEY,
-    authDomain: "carrier-cb914.firebaseapp.com",
-    projectId: "carrier-cb914",
-    storageBucket: "carrier-cb914.firebasestorage.app",
-    messagingSenderId: "425653750486",
-    appId: "1:425653750486:web:d79e10a0c5076858c25777",
-    measurementId: "G-BNPGF5ZFPS"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
-// AIzaSyDD6gGxMy4_ssGjXvU5i16kJ9nIArRPixU
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
