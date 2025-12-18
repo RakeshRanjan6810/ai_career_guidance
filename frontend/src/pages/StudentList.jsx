@@ -155,7 +155,7 @@ const StudentList = () => {
                 <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
-                            <thead className="bg-slate-50 dark:bg-slate-900/50">
+                            <thead className="bg-surface-hover">
                                 <tr>
                                     <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Student</th>
                                     <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Target Career</th>
@@ -447,7 +447,7 @@ const AssignProjectModal = ({ student, onClose }) => {
                     </div>
                 ) : (
                     <div className="space-y-4">
-                        <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div className="p-4 bg-surface rounded-xl border border-border">
                             <h4 className="font-bold dark:text-white mb-2">{aiResult.title || topic}</h4>
                             <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">{aiResult.description}</p>
                             <h5 className="font-semibold text-xs uppercase text-slate-500 mb-1">Outcomes</h5>
@@ -618,7 +618,7 @@ const ViewStudentModal = ({ student, onClose }) => {
                 <div className="p-6 space-y-6">
                     {/* Contact & Info Grid - Only show if at least one exists */}
                     {(student.location || student.education || student.phone) && (
-                        <div className="grid grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl">
+                        <div className="grid grid-cols-2 gap-6 bg-surface-hover p-4 rounded-xl">
                             {student.location && (
                                 <div>
                                     <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Location</h4>

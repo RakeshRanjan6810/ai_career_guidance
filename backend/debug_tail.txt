@@ -1,0 +1,50 @@
+﻿    at OpenAI.makeStatusError (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateWithRetry (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:18:32)
+    at async exports.chatWithAI (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:320:26)
+
+[2025-12-16T07:47:43.629Z] RETRY FAIL (llama-3.3-70b-versatile): 401 Invalid API Key
+
+[2025-12-16T07:47:43.971Z] RETRY FAIL (llama-3.1-8b-instant): 401 Invalid API Key
+
+[2025-12-16T07:47:44.102Z] RETRY FAIL (mixtral-8x7b-32768): 401 Invalid API Key
+
+[2025-12-16T07:47:44.115Z] AI Chat Error: 401 Invalid API Key
+Stack: Error: 401 Invalid API Key
+    at APIError.generate (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateWithRetry (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:18:32)
+    at async exports.chatWithAI (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:320:26)
+
+[2025-12-16T07:48:54.986Z] RETRY FAIL (llama-3.3-70b-versatile): 401 Invalid API Key
+
+[2025-12-16T07:48:55.445Z] RETRY FAIL (llama-3.1-8b-instant): 401 Invalid API Key
+
+[2025-12-16T07:48:55.757Z] RETRY FAIL (mixtral-8x7b-32768): 401 Invalid API Key
+
+[2025-12-16T07:48:55.762Z] AI Chat Error: 401 Invalid API Key
+Stack: Error: 401 Invalid API Key
+    at APIError.generate (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateWithRetry (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:18:32)
+    at async exports.chatWithAI (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:320:26)
+
+[2025-12-16T07:49:01.498Z] RETRY FAIL (llama-3.3-70b-versatile): 401 Invalid API Key
+
+[2025-12-16T07:49:02.286Z] RETRY FAIL (llama-3.1-8b-instant): 401 Invalid API Key
+
+[2025-12-16T07:49:02.616Z] RETRY FAIL (mixtral-8x7b-32768): 401 Invalid API Key
+
+[2025-12-16T07:49:02.627Z] AI Chat Error: 401 Invalid API Key
+Stack: Error: 401 Invalid API Key
+    at APIError.generate (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateWithRetry (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:18:32)
+    at async exports.chatWithAI (C:\Users\Rakesh_Ranjan\Desktop\Ai\project\backend\controllers\aiController.js:320:26)

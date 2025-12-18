@@ -102,10 +102,10 @@ const MarketAnalysis = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950">
-                <Loader className="w-12 h-12 text-indigo-600 animate-spin mb-4" />
-                <h2 className="text-xl font-bold text-slate-800 dark:text-white">Analyzing Job Market...</h2>
-                <p className="text-slate-500 dark:text-slate-400">Gathering salary data, demand trends, and skill gaps for you.</p>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-background">
+                <Loader className="w-12 h-12 text-primary animate-spin mb-4" />
+                <h2 className="text-xl font-bold text-text-main">Analyzing Job Market...</h2>
+                <p className="text-text-muted">Gathering salary data, demand trends, and skill gaps for you.</p>
             </div>
         );
     }
@@ -126,24 +126,24 @@ const MarketAnalysis = () => {
     return (
         <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6">
             {/* Search Bar */}
-            <div className="mb-8 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+            <div className="mb-8 bg-surface p-4 rounded-xl shadow-sm border border-border">
                 <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 relative">
-                        <Search className="absolute left-3 top-3 text-slate-400" size={20} />
+                        <Search className="absolute left-3 top-3 text-text-muted" size={20} />
                         <input
                             type="text"
                             placeholder="Target Role (e.g. Data Scientist)"
-                            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-text-main"
                             value={searchRole}
                             onChange={(e) => setSearchRole(e.target.value)}
                         />
                     </div>
                     <div className="flex-1 relative">
-                        <MapPin className="absolute left-3 top-3 text-slate-400" size={20} />
+                        <MapPin className="absolute left-3 top-3 text-text-muted" size={20} />
                         <input
                             type="text"
                             placeholder="Country/Region (e.g. USA, Remote)"
-                            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-text-main"
                             value={searchCountry}
                             onChange={(e) => setSearchCountry(e.target.value)}
                         />
@@ -152,7 +152,7 @@ const MarketAnalysis = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         type="submit"
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2"
+                        className="bg-primary hover:bg-primary-hover text-white px-6 py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-2"
                     >
                         {loading ? <Loader size={20} className="animate-spin" /> : <Search size={20} />}
                         Analyze Market
@@ -162,13 +162,13 @@ const MarketAnalysis = () => {
 
             {/* Header */}
             <header className="mb-10 text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-bold mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-light/10 text-primary rounded-full text-sm font-bold mb-4">
                     <Zap size={16} /> AI Career Mentor
                 </div>
-                <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-3">
-                    Career Insights: <span className="text-indigo-600 dark:text-indigo-400">{role_name}</span>
+                <h1 className="text-4xl font-extrabold text-text-main mb-3">
+                    Career Insights: <span className="text-primary">{role_name}</span>
                 </h1>
-                <div className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+                <div className="text-lg text-text-muted max-w-3xl mx-auto">
                     <Markdown>{summary}</Markdown>
                 </div>
             </header>
@@ -209,9 +209,9 @@ const MarketAnalysis = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow"
+                    className="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md transition-shadow"
                 >
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-text-main mb-6 flex items-center gap-2">
                         <DollarSign className="text-green-600" /> Salary Bands ({salary_insights.currency})
                     </h2>
                     <div className="space-y-6">
@@ -229,25 +229,25 @@ const MarketAnalysis = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow"
+                    className="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md transition-shadow"
                 >
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-text-main mb-6 flex items-center gap-2">
                         <Award className="text-amber-500" /> Skill Requirements
                     </h2>
                     <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                         {skill_gap_analysis.map((gap, i) => (
-                            <div key={i} className="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50">
+                            <div key={i} className="flex items-start gap-4 p-3 rounded-xl bg-surface-hover">
                                 <div className={`w-2 h-full min-h-[40px] rounded-full ${gap.status === 'needs_improvement' ? 'bg-red-400' : 'bg-green-400'}`}></div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-1">
-                                        <h3 className="font-bold text-slate-900 dark:text-white">{gap.skill}</h3>
+                                        <h3 className="font-bold text-text-main">{gap.skill}</h3>
                                         <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase font-bold ${gap.status === 'needs_improvement'
                                             ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
                                             : 'bg-green-100 text-green-600'
                                             }`}>{gap.status.replace('_', ' ')}</span>
                                     </div>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                                        Required: <span className="font-medium text-slate-700 dark:text-slate-300">{gap.required_level}</span> • You: <span className="font-medium text-slate-700 dark:text-slate-300">{gap.user_level}</span>
+                                    <p className="text-xs text-text-muted">
+                                        Required: <span className="font-medium text-text-main">{gap.required_level}</span> • You: <span className="font-medium text-text-main">{gap.user_level}</span>
                                     </p>
                                     <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 italic">
                                         "{gap.comment}"
@@ -268,10 +268,10 @@ const MarketAnalysis = () => {
             >
                 <ActionList
                     title="30-Day Attack Plan"
-                    icon={<Calendar className="text-indigo-500" />}
+                    icon={<Calendar className="text-primary" />}
                     items={action_plan_30_days}
-                    bg="bg-indigo-50 dark:bg-indigo-900/10"
-                    itemIcon={<CheckCircle size={16} className="text-indigo-600 mt-1" />}
+                    bg="bg-primary-light/10"
+                    itemIcon={<CheckCircle size={16} className="text-primary mt-1" />}
                 />
                 <ActionList
                     title="6-Month Strategy"
@@ -315,14 +315,14 @@ const MarketAnalysis = () => {
             </motion.div>
 
             {/* Ask the Mentor Chat */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                    <MessageSquare className="text-indigo-500" /> Ask the Mentor
+            <div className="bg-surface rounded-2xl p-6 shadow-lg border border-border">
+                <h2 className="text-xl font-bold text-text-main mb-6 flex items-center gap-2">
+                    <MessageSquare className="text-primary" /> Ask the Mentor
                 </h2>
 
-                <div className="h-80 overflow-y-auto mb-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl space-y-4 custom-scrollbar">
+                <div className="h-80 overflow-y-auto mb-4 p-4 bg-background rounded-xl space-y-4 custom-scrollbar">
                     {chatHistory.length === 0 && (
-                        <p className="text-center text-slate-400 mt-20 text-sm">
+                        <p className="text-center text-text-muted mt-20 text-sm">
                             Ask specific questions about this report.<br />
                             "How do I learn these skills?" or "Is this salary realistic?"
                         </p>
@@ -330,8 +330,8 @@ const MarketAnalysis = () => {
                     {chatHistory.map((msg, i) => (
                         <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${msg.role === 'user'
-                                ? 'bg-indigo-600 text-white'
-                                : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+                                ? 'bg-primary text-white'
+                                : 'bg-surface border border-border text-text-main'
                                 }`}>
 
                                 <Markdown>{msg.content}</Markdown>
@@ -351,7 +351,7 @@ const MarketAnalysis = () => {
                     <input
                         type="text"
                         placeholder="Ask a follow-up question..."
-                        className="w-full pl-4 pr-12 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none transition-all dark:text-white"
+                        className="w-full pl-4 pr-12 py-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all text-text-main"
                         value={chatMessage}
                         onChange={(e) => setChatMessage(e.target.value)}
                     />
@@ -360,7 +360,7 @@ const MarketAnalysis = () => {
                         whileTap={{ scale: 0.9 }}
                         type="submit"
                         disabled={chatLoading || !chatMessage.trim()}
-                        className="absolute right-2 top-2 p-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="absolute right-2 top-2 p-1.5 bg-primary text-white rounded-lg hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                         {chatLoading ? <Loader size={16} className="animate-spin" /> : <Send size={16} />}
                     </motion.button>
@@ -371,13 +371,13 @@ const MarketAnalysis = () => {
 };
 
 const MetricCard = ({ icon, title, value, subtext, color }) => (
-    <div className={`bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-4`}>
+    <div className={`bg-surface p-6 rounded-2xl border border-border shadow-sm flex items-center gap-4`}>
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-${color}-100 dark:bg-${color}-900/20`}>
             {icon}
         </div>
         <div>
-            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{title}</p>
-            <h3 className="text-2xl font-black text-slate-900 dark:text-white">{value}</h3>
+            <p className="text-sm text-text-muted font-medium">{title}</p>
+            <h3 className="text-2xl font-black text-text-main">{value}</h3>
             <p className="text-xs text-green-600 dark:text-green-400 font-medium mt-0.5">{subtext}</p>
         </div>
     </div>

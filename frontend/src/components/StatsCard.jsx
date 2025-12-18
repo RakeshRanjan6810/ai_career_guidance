@@ -1,11 +1,15 @@
 import React from 'react';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const StatsCard = ({ title, value, change, trend, icon: Icon, color }) => {
     const isPositive = change >= 0;
 
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+        <motion.div
+            whileHover={{ y: -5 }}
+            className="bg-surface rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow"
+        >
             <div className="flex justify-between items-start mb-4">
                 <div className={`p-3 rounded-xl ${color} bg-opacity-10 dark:bg-opacity-20`}>
                     <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
@@ -17,11 +21,11 @@ const StatsCard = ({ title, value, change, trend, icon: Icon, color }) => {
             </div>
 
             <div>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">{title}</p>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{value}</h3>
+                <p className="text-text-muted text-sm font-medium mb-1">{title}</p>
+                <h3 className="text-2xl font-bold text-text-main">{value}</h3>
                 <p className="text-xs text-slate-400 mt-1">{trend}</p>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

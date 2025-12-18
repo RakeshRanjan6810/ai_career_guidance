@@ -23,7 +23,9 @@ yarn-error.log*
 backend_debug.log
 
 # Editor directories
-.vscode/
+# .vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 *.swp
 *.swo

@@ -83,7 +83,11 @@ const ManageCourses = () => {
     };
 
     // Filter only my courses
-    const myCourses = courses.filter(course => course.instructor._id === currentInstructorId || course.instructor === currentInstructorId);
+    const myCourses = courses.filter(course => {
+        const instructorId = course.instructor?._id || course.instructor;
+        // console.log('Checking course:', course.title, 'InstID:', instructorId, 'MyID:', currentInstructorId);
+        return instructorId && String(instructorId) === String(currentInstructorId);
+    });
 
     return (
         <div className="max-w-7xl mx-auto p-6 pb-10">
@@ -91,7 +95,7 @@ const ManageCourses = () => {
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
                         <BookOpen className="text-indigo-600" />
-                        Manage Courses
+                        Uploaded Content
                     </h1>
                     <p className="text-slate-600 dark:text-slate-400">
                         Edit, rename, or remove your uploaded content.

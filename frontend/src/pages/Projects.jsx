@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Briefcase, Sparkles, Plus, Save, Loader, Trash2, Play, Activity, CheckCircle } from 'lucide-react';
+import { Briefcase, Sparkles, Plus, Save, Loader, Trash2, Activity, CheckCircle } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Projects = () => {
@@ -207,11 +207,11 @@ const Projects = () => {
         <div className="max-w-7xl mx-auto p-6 pb-10">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                        <Briefcase className="text-indigo-600" />
+                    <h1 className="text-3xl font-bold text-text-main flex items-center gap-3">
+                        <Briefcase className="text-primary" />
                         Projects
                     </h1>
-                    <p className="text-slate-600 dark:text-slate-400">
+                    <p className="text-text-muted">
                         {user?.role === 'instructor'
                             ? "Create AI-enhanced project tasks for your students."
                             : "Real-world projects assigned by your instructors."}
@@ -227,23 +227,23 @@ const Projects = () => {
 
             {/* INSTRUCTOR CREATE FORM */}
             {showForm && (
-                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-xl mb-8 animate-in fade-in slide-in-from-top-4">
+                <div className="bg-surface p-6 rounded-2xl border border-primary/20 shadow-xl mb-8 animate-in fade-in slide-in-from-top-4">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-xl font-bold flex items-center gap-2 dark:text-white">
+                        <h2 className="text-xl font-bold flex items-center gap-2 text-text-main">
                             {creationMode === 'ai' ? <Sparkles className="text-yellow-500" /> : <Briefcase className="text-blue-500" />}
                             {user?.role === 'instructor' ? 'Create Assignment' : 'Create Project'}
                         </h2>
                         <div className="flex bg-slate-100 dark:bg-slate-700 p-1 rounded-lg">
                             <button
                                 onClick={() => setCreationMode('ai')}
-                                className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${creationMode === 'ai' ? 'bg-white dark:bg-slate-600 shadow-sm text-indigo-600 dark:text-indigo-300' : 'text-slate-500 dark:text-slate-400'}`}
+                                className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${creationMode === 'ai' ? 'bg-background shadow-sm text-primary' : 'text-text-muted'}`}
                             >
                                 AI Generator
                             </button>
                             {user?.role === 'instructor' && (
                                 <button
                                     onClick={() => setCreationMode('manual')}
-                                    className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${creationMode === 'manual' ? 'bg-white dark:bg-slate-600 shadow-sm text-indigo-600 dark:text-indigo-300' : 'text-slate-500 dark:text-slate-400'}`}
+                                    className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${creationMode === 'manual' ? 'bg-background shadow-sm text-primary' : 'text-text-muted'}`}
                                 >
                                     Manual
                                 </button>
@@ -253,21 +253,21 @@ const Projects = () => {
                     <div className="grid md:grid-cols-2 gap-6 mb-6">
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium mb-1 dark:text-white">Project Title</label>
+                                <label className="block text-sm font-medium mb-1 text-text-main">Project Title</label>
                                 <input
                                     value={formData.title}
                                     onChange={e => setFormData({ ...formData, title: e.target.value })}
-                                    className="w-full px-4 py-2 rounded-lg border dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+                                    className="w-full px-4 py-2 rounded-lg border bg-background border-border text-text-main"
                                     placeholder="e.g. E-Commerce API"
                                 />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium mb-1 dark:text-white">Difficulty</label>
+                                    <label className="block text-sm font-medium mb-1 text-text-main">Difficulty</label>
                                     <select
                                         value={formData.difficulty}
                                         onChange={e => setFormData({ ...formData, difficulty: e.target.value })}
-                                        className="w-full px-4 py-2 rounded-lg border dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+                                        className="w-full px-4 py-2 rounded-lg border bg-background border-border text-text-main"
                                     >
                                         <option>Basic</option>
                                         <option>Intermediate</option>
@@ -275,11 +275,11 @@ const Projects = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium mb-1 dark:text-white">Tech Stack</label>
+                                    <label className="block text-sm font-medium mb-1 text-text-main">Tech Stack</label>
                                     <input
                                         value={formData.techStack}
                                         onChange={e => setFormData({ ...formData, techStack: e.target.value })}
-                                        className="w-full px-4 py-2 rounded-lg border dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+                                        className="w-full px-4 py-2 rounded-lg border bg-background border-border text-text-main"
                                         placeholder="React, Node..."
                                     />
                                 </div>
@@ -288,11 +288,11 @@ const Projects = () => {
                             {/* INSTRUCTOR ASSIGNMENT ONLY */}
                             {user?.role === 'instructor' && (
                                 <div>
-                                    <label className="block text-sm font-medium mb-1 dark:text-white">Assign to Student (Optional)</label>
+                                    <label className="block text-sm font-medium mb-1 text-text-main">Assign to Student (Optional)</label>
                                     <select
                                         value={selectedStudentId}
                                         onChange={e => setSelectedStudentId(e.target.value)}
-                                        className="w-full px-4 py-2 rounded-lg border dark:bg-slate-900 dark:border-slate-700 dark:text-white"
+                                        className="w-full px-4 py-2 rounded-lg border bg-background border-border text-text-main"
                                     >
                                         <option value="">-- Create as General Assignment --</option>
                                         {students.map(s => (
@@ -315,24 +315,24 @@ const Projects = () => {
                         </div>
 
                         {/* PREVIEW or MANUAL INPUTS */}
-                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-700 min-h-[300px]">
+                        <div className="bg-background rounded-xl p-4 border border-border min-h-[300px]">
                             {creationMode === 'manual' ? (
                                 <div className="space-y-4 h-full flex flex-col">
                                     <div className="flex-1">
-                                        <label className="block text-sm font-medium mb-1 dark:text-white">Project Description</label>
+                                        <label className="block text-sm font-medium mb-1 text-text-main">Project Description</label>
                                         <textarea
                                             value={formData.manualDescription}
                                             onChange={e => setFormData({ ...formData, manualDescription: e.target.value })}
-                                            className="w-full h-32 px-4 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-600 dark:text-white"
+                                            className="w-full h-32 px-4 py-2 rounded-lg border bg-surface dark:bg-slate-800 border-border text-text-main"
                                             placeholder="Describe the project..."
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium mb-1 dark:text-white">Key Features</label>
+                                        <label className="block text-sm font-medium mb-1 text-text-main">Key Features</label>
                                         <textarea
                                             value={formData.manualFeatures}
                                             onChange={e => setFormData({ ...formData, manualFeatures: e.target.value })}
-                                            className="w-full h-20 px-4 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-600 dark:text-white"
+                                            className="w-full h-20 px-4 py-2 rounded-lg border bg-surface dark:bg-slate-800 border-border text-text-main"
                                             placeholder="List features..."
                                         />
                                     </div>
@@ -350,13 +350,13 @@ const Projects = () => {
                                             <strong>Why {formData.difficulty}:</strong> {aiResult.difficultyReasoning}
                                         </div>
                                         <div>
-                                            <h3 className="font-bold dark:text-white">Description</h3>
-                                            <div className="text-sm text-slate-600 dark:text-slate-400">
+                                            <h3 className="font-bold text-text-main">Description</h3>
+                                            <div className="text-sm text-text-muted">
                                                 <ReactMarkdown>{aiResult.description}</ReactMarkdown>
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold dark:text-white">Key Features</h3>
+                                            <h3 className="font-bold text-text-main">Key Features</h3>
                                             <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-400">
                                                 {aiResult.features.map((f, i) => <li key={i}>{f}</li>)}
                                             </ul>
@@ -395,7 +395,7 @@ const Projects = () => {
                     const canEditStatus = isOwner || isAssignee;
 
                     return (
-                        <div key={proj._id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+                        <div key={proj._id} className="bg-surface p-6 rounded-2xl border border-border shadow-sm relative overflow-hidden group">
                             <div className={`absolute top-0 right-0 px-4 py-1 text-xs font-bold rounded-bl-xl ${proj.difficulty === 'High' ? 'bg-red-100 text-red-700' :
                                 proj.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
                                     'bg-green-100 text-green-700'
@@ -403,14 +403,14 @@ const Projects = () => {
                                 {proj.difficulty}
                             </div>
 
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 pr-12">{proj.title}</h3>
+                            <h3 className="text-xl font-bold text-text-main mb-2 pr-12">{proj.title}</h3>
 
                             {/* If we stored raw AI data, try to parse it, otherwise show description */}
-                            <div className="prose dark:prose-invert max-w-none text-sm text-slate-600 dark:text-slate-300">
+                            <div className="prose dark:prose-invert max-w-none text-sm text-text-muted">
                                 <ReactMarkdown>{proj.description}</ReactMarkdown>
                             </div>
 
-                            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex flex-col gap-4">
+                            <div className="mt-4 pt-4 border-t border-border flex flex-col gap-4">
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center gap-2">
                                         {/* Status Badge */}
@@ -424,7 +424,7 @@ const Projects = () => {
 
                                         <div className="flex gap-1">
                                             {proj.tags?.map(tag => (
-                                                <span key={tag} className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs rounded-md font-mono">
+                                                <span key={tag} className="px-2 py-1 bg-surface-hover text-xs rounded-md font-mono">
                                                     {tag}
                                                 </span>
                                             ))}

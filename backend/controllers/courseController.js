@@ -160,3 +160,44 @@ exports.startCourse = async (req, res) => {
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 };
+
+// @desc    Update Course Progress (Study Hours & %)
+// @route   PUT /api/courses/:id/progress
+// @access  Private
+exports.updateCourseProgress = async (req, res) => {
+    try {
+        const courseId = req.params.id;
+        const userId = req.user.id;
+        const { progress, hoursSpent } = req.body; // e.g. { progress: 50, hoursSpent: 2 }
+
+        let userProgress = await UserProgress.findOne({ user: userId, course: courseId });
+
+        if (!userProgress) {
+            return res.status(404).json({ success: false, message: 'Not enrolled in this course' });
+        }
+
+        // Update fields
+        if (progress !== undefined) {
+            userProgress.progress = Math.min(100, Math.max(0, progress));
+        }
+
+        if (hoursSpent !== undefined) {
+            userProgress.studyHours = (userProgress.studyHours || 0) + parseFloat(hoursSpent);
+        }
+
+        userProgress.lastAccessed = Date.now();
+
+        // Check completion
+        if (userProgress.progress === 100) {
+            userProgress.status = 'completed';
+        }
+
+        await userProgress.save();
+
+        res.json({ success: true, data: userProgress });
+
+    } catch (error) {
+        console.error('Update Progress Error:', error);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+};

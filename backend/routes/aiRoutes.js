@@ -3,7 +3,10 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 
-const { getAIRecommendations, chatWithAI, generateProjectDescription, generateCourseDetails, generateLearningPlan, analyzeResume, generatePortfolioSummary, generateResourcePlan, generateCareerMarketAnalysis } = require('../controllers/aiController');
+const { getAIRecommendations, generateLearningPlan, generateCareerMarketAnalysis } = require('../controllers/aiCareerController');
+const { generateProjectDescription, generateCourseDetails, generateResourcePlan } = require('../controllers/aiContentController');
+const { analyzeResume, generatePortfolioSummary } = require('../controllers/aiProfileController');
+const { chatWithAI } = require('../controllers/aiInteractionController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.get('/test', (req, res) => res.send('AI Routes Working'));

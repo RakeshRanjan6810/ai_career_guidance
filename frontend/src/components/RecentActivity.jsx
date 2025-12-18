@@ -3,25 +3,25 @@ import { CheckCircle2, PlayCircle, Trophy, BookOpen, Activity } from 'lucide-rea
 
 const RecentActivity = ({ activity = [] }) => {
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm h-full">
+        <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm h-full">
             <div className="mb-6 flex justify-between items-center">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h3>
+                <h3 className="text-lg font-bold text-text-main">Recent Activity</h3>
             </div>
 
             <div className="space-y-6 relative before:absolute before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100 dark:before:bg-slate-800">
                 {activity.length > 0 ? activity.map((item, idx) => (
                     <div key={idx} className="relative pl-10 flex gap-4">
-                        <div className={`absolute left-0 top-0 w-8 h-8 rounded-full flex items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 ring-4 ring-white dark:ring-slate-900 z-10`}>
-                            <Activity size={14} className="text-indigo-600 dark:text-indigo-400" />
+                        <div className={`absolute left-0 top-0 w-8 h-8 rounded-full flex items-center justify-center bg-primary-light/10 ring-4 ring-bg-card z-10`}>
+                            <Activity size={14} className="text-primary" />
                         </div>
 
                         <div className="flex-1">
-                            <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{item.action}</h4>
-                            <p className="text-xs text-slate-500 mt-1">{new Date(item.date).toLocaleDateString()} {new Date(item.date).toLocaleTimeString()}</p>
+                            <h4 className="text-sm font-semibold text-text-main">{item.action}</h4>
+                            <p className="text-xs text-text-muted mt-1">{new Date(item.date).toLocaleDateString()} {new Date(item.date).toLocaleTimeString()}</p>
                         </div>
                     </div>
                 )) : (
-                    <div className="pl-10 text-sm text-slate-500">No recent activity</div>
+                    <div className="pl-10 text-sm text-text-muted">No recent activity</div>
                 )}
             </div>
         </div>

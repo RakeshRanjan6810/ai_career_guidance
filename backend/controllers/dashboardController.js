@@ -21,12 +21,10 @@ exports.getDashboardData = async (req, res) => {
         const progressDocs = await UserProgress.find({ user: userId });
         let totalProgress = 0;
         let totalStudyHours = 0;
-        let activeCoursesCount = 0;
 
         progressDocs.forEach(doc => {
             totalProgress += doc.progress;
             totalStudyHours += doc.studyHours;
-            if (doc.status === 'in-progress') activeCoursesCount++;
         });
 
         const weeklyProgress = progressDocs.length > 0 ? Math.round(totalProgress / progressDocs.length) : 0;
@@ -35,7 +33,7 @@ exports.getDashboardData = async (req, res) => {
         const skillsAcquired = user.skills.length;
 
         // 3. Peer Rank
-        let peerRank = 'N/A';
+        let peerRank = '';
         if (user.assignedInstructor) {
             const peers = await User.find({ assignedInstructor: user.assignedInstructor._id }).select('skills');
             // Ranking logic: simplest is count of skills

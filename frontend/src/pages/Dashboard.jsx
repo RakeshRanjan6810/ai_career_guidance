@@ -151,6 +151,7 @@ const Dashboard = () => {
     };
 
     return (
+
         <motion.div
             className="max-w-7xl mx-auto space-y-8 pb-10"
             variants={containerVariants}
@@ -160,13 +161,13 @@ const Dashboard = () => {
             {/* Header */}
             <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
-                        Welcome back, <span className="text-indigo-600">{user.name}</span>!
+                    <h1 className="text-3xl font-bold text-text-main">
+                        Welcome back, <span className="text-primary">{user.name}</span>!
                     </h1>
-                    <p className="text-slate-500 mt-1">Here is your learning progress for today.</p>
+                    <p className="text-text-muted mt-1">Here is your learning progress for today.</p>
                 </div>
                 <div className="text-right hidden md:block">
-                    <p className="text-sm font-medium text-slate-900 dark:text-white">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <p className="text-sm font-medium text-text-main">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
             </motion.div>
 
@@ -183,7 +184,7 @@ const Dashboard = () => {
                 {/* Left Col: Resume Learning (Hero) */}
                 <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
                     {/* Hero Card */}
-                    <div className="bg-gradient-to-r from-indigo-600 to-purple-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group">
+                    <div className="bg-gradient-to-r from-primary to-purple-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-colors duration-500"></div>
 
                         <div className="relative z-10">
@@ -209,7 +210,7 @@ const Dashboard = () => {
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => navigate('/courses')}
-                                        className="bg-white text-indigo-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-black/10 hover:shadow-black/20 transition-all"
+                                        className="bg-white text-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-black/10 hover:shadow-black/20 transition-all"
                                     >
                                         <PlayCircle size={20} /> Resume
                                     </motion.button>
@@ -221,7 +222,7 @@ const Dashboard = () => {
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => navigate('/courses')}
-                                        className="bg-white text-indigo-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2"
+                                        className="bg-white text-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2"
                                     >
                                         <BookOpen size={20} /> Browse Courses
                                     </motion.button>
@@ -236,13 +237,13 @@ const Dashboard = () => {
                         <motion.div
                             whileHover={{ y: -5 }}
                             onClick={() => navigate('/portfolio')}
-                            className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 cursor-pointer"
+                            className="bg-surface p-6 rounded-2xl shadow-sm border border-border cursor-pointer hover:shadow-md transition-all"
                         >
                             <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
                                 <Briefcase className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Career Insights</h3>
-                            <p className="text-sm text-slate-500 mb-4">View your market analysis, skill gaps, and salary potential.</p>
+                            <h3 className="text-lg font-bold text-text-main mb-2">Career Insights</h3>
+                            <p className="text-sm text-text-muted mb-4">View your market analysis, skill gaps, and salary potential.</p>
                             <div className="flex items-center text-emerald-600 font-medium text-sm group">
                                 View Report <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                             </div>
@@ -252,13 +253,13 @@ const Dashboard = () => {
                         <motion.div
                             whileHover={{ y: -5 }}
                             onClick={() => navigate('/learning-plan')}
-                            className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 cursor-pointer"
+                            className="bg-surface p-6 rounded-2xl shadow-sm border border-border cursor-pointer hover:shadow-md transition-all"
                         >
                             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
                                 <Target className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Learning Plan</h3>
-                            <p className="text-sm text-slate-500 mb-4">Track your weekly goals and curriculum progress.</p>
+                            <h3 className="text-lg font-bold text-text-main mb-2">Learning Plan</h3>
+                            <p className="text-sm text-text-muted mb-4">Track your weekly goals and curriculum progress.</p>
                             <div className="flex items-center text-blue-600 font-medium text-sm group">
                                 View Plan <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                             </div>
@@ -269,13 +270,13 @@ const Dashboard = () => {
                     {dashboardData?.assignedMentor && (
                         <motion.div
                             whileHover={{ y: -5 }}
-                            className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 mt-6"
+                            className="bg-surface p-6 rounded-2xl shadow-sm border border-border mt-6"
                         >
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                                <Users className="text-indigo-600" size={20} /> My Mentor
+                            <h3 className="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
+                                <Users className="text-primary" size={20} /> My Mentor
                             </h3>
                             <div className="flex items-start gap-4">
-                                <div className="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-2xl font-bold overflow-hidden border-2 border-slate-100 dark:border-slate-700">
+                                <div className="w-16 h-16 rounded-full bg-primary-light flex items-center justify-center text-primary text-2xl font-bold overflow-hidden border-2 border-slate-100 dark:border-slate-700">
                                     {dashboardData.assignedMentor.profilePicture ? (
                                         <img src={dashboardData.assignedMentor.profilePicture} alt="Mentor" className="w-full h-full object-cover" />
                                     ) : (
@@ -283,8 +284,8 @@ const Dashboard = () => {
                                     )}
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="font-bold text-lg text-slate-900 dark:text-white">{dashboardData.assignedMentor.name}</h4>
-                                    <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">{dashboardData.assignedMentor.email}</p>
+                                    <h4 className="font-bold text-lg text-text-main">{dashboardData.assignedMentor.name}</h4>
+                                    <p className="text-sm text-text-muted mb-2">{dashboardData.assignedMentor.email}</p>
                                     {dashboardData.assignedMentor.bio && (
                                         <p className="text-sm text-slate-600 dark:text-slate-400 italic mb-3">
                                             "{dashboardData.assignedMentor.bio}"
@@ -292,7 +293,7 @@ const Dashboard = () => {
                                     )}
                                     <button
                                         onClick={() => setShowMentorModal(true)}
-                                        className="text-sm bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-lg font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors flex items-center gap-2 w-fit"
+                                        className="text-sm bg-indigo-50 dark:bg-indigo-900/30 text-primary px-4 py-2 rounded-lg font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors flex items-center gap-2 w-fit"
                                     >
                                         <MessageSquare size={16} /> Message Mentor
                                     </button>
@@ -303,8 +304,8 @@ const Dashboard = () => {
                 </motion.div>
 
                 {/* Right Col: Recent Activity */}
-                <motion.div variants={itemVariants} className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 h-fit">
-                    <h3 className="font-bold text-xl text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <motion.div variants={itemVariants} className="bg-surface rounded-3xl p-6 shadow-sm border border-border h-fit">
+                    <h3 className="font-bold text-xl text-text-main mb-6 flex items-center gap-2">
                         <Clock className="text-slate-400" size={20} /> Recent Activity
                     </h3>
 
@@ -317,12 +318,12 @@ const Dashboard = () => {
                         </div>
                     )}
 
-                    <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+                    <div className="mt-6 pt-6 border-t border-border">
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => navigate('/projects')}
-                            className="w-full py-3 bg-slate-50 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-semibold hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
+                            className="w-full py-3 bg-slate-50 dark:bg-slate-700 text-text-main rounded-xl font-semibold hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
                         >
                             View All Projects
                         </motion.button>
@@ -343,35 +344,35 @@ const Dashboard = () => {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative"
+                            className="bg-surface w-full max-w-lg rounded-2xl p-6 shadow-2xl relative border border-border"
                         >
                             <button
                                 onClick={() => setShowMentorModal(false)}
-                                className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                className="absolute top-4 right-4 p-1 text-slate-400 hover:text-text-main rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                             >
                                 <X size={20} />
                             </button>
-                            <h3 className="text-xl font-bold mb-1 text-slate-900 dark:text-white flex items-center gap-2">
-                                <MessageSquare className="text-indigo-600" /> Message Mentor
+                            <h3 className="text-xl font-bold mb-1 text-text-main flex items-center gap-2">
+                                <MessageSquare className="text-primary" /> Message Mentor
                             </h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            <p className="text-sm text-text-muted mb-6">
                                 Send a query or update to your mentor, {dashboardData?.assignedMentor?.name}.
                             </p>
 
                             <div className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Subject</label>
+                                    <label className="block text-sm font-medium text-text-main mb-1">Subject</label>
                                     <input
-                                        className="w-full p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full p-2.5 rounded-lg border border-border bg-background text-text-main focus:ring-2 focus:ring-primary outline-none"
                                         placeholder="e.g. Help with Coursework"
                                         value={msgSubject}
                                         onChange={(e) => setMsgSubject(e.target.value)}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Message</label>
+                                    <label className="block text-sm font-medium text-text-main mb-1">Message</label>
                                     <textarea
-                                        className="w-full h-32 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+                                        className="w-full h-32 p-3 rounded-xl border border-border bg-background text-text-main focus:ring-2 focus:ring-primary outline-none resize-none"
                                         placeholder="Type your message here..."
                                         value={msgContent}
                                         onChange={(e) => setMsgContent(e.target.value)}
@@ -382,14 +383,14 @@ const Dashboard = () => {
                             <div className="flex justify-end gap-3 mt-6">
                                 <button
                                     onClick={() => setShowMentorModal(false)}
-                                    className="px-4 py-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                                    className="px-4 py-2 text-text-muted hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleSendMessage}
                                     disabled={sendingMsg}
-                                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                                    className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
                                 >
                                     {sendingMsg ? (
                                         <>Sending...</>

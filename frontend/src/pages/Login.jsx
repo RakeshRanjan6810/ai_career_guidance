@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { FaGoogle } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { Toaster, toast } from 'react-hot-toast';
 
 import { auth, googleProvider } from '../firebase';
@@ -99,7 +100,13 @@ const Login = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 flex items-center justify-center p-4">
             <Toaster position="top-center" reverseOrder={false} />
-            <div className="bg-white/70 dark:bg-slate-800/60 backdrop-blur-2xl border border-white/50 dark:border-slate-700 p-8 rounded-3xl shadow-2xl w-full max-w-md relative overflow-hidden ring-1 ring-slate-900/5 dark:ring-white/10">
+            <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="bg-white/70 dark:bg-slate-800/60 backdrop-blur-2xl border border-white/50 dark:border-slate-700 p-8 rounded-3xl shadow-2xl w-full max-w-md relative overflow-hidden ring-1 ring-slate-900/5 dark:ring-white/10"
+            >
 
                 {/* Decorative background glow */}
                 <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/10 dark:bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -170,8 +177,8 @@ const Login = () => {
                 <p className="text-center text-slate-600 dark:text-slate-400 text-sm mt-8 relative z-10 font-medium">
                     Don't have an account? <Link to="/signup" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-bold hover:underline">Sign up</Link>
                 </p>
-            </div>
-        </div>
+            </motion.div>
+        </div >
     );
 };
 

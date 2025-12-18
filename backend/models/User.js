@@ -26,14 +26,14 @@ const userSchema = new mongoose.Schema({
         enum: ['student', 'instructor', 'admin'],
         default: 'student'
     },
-    bio: {
-        type: String,
-        default: ''
-    },
-    location: {
-        type: String,
-        default: ''
-    },
+    // bio: {
+    //     type: String,
+    //     default: ''
+    // },
+    // location: {
+    //     type: String,
+    //     default: ''
+    // },
     targetCareer: {
         type: String,
         default: ''

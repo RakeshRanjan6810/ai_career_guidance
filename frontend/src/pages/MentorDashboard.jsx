@@ -36,9 +36,11 @@ const MentorDashboard = ({ user }) => {
 
                 if (dataCourses.success) {
                     // Filter courses belonging to this instructor
-                    myCourses = dataCourses.data.filter(c =>
-                        (c.instructor._id === instructorId) || (c.instructor === instructorId)
-                    );
+                    // Filter courses belonging to this instructor with robust ID check
+                    myCourses = dataCourses.data.filter(c => {
+                        const cInstructorId = c.instructor?._id || c.instructor;
+                        return cInstructorId && String(cInstructorId) === String(instructorId);
+                    });
 
                     // 3. Calculate Content Uploads (Sum of resources in my courses)
                     myCourses.forEach(c => {
@@ -182,7 +184,7 @@ const MentorDashboard = ({ user }) => {
                     <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:scale-110 transition-transform">
                         <BookOpen size={24} />
                     </div>
-                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">My Courses</h3>
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">Uploaded Content</h3>
                     <p className="text-sm text-slate-500 mt-2">Manage existing courses, update curriculum, and review stats.</p>
                 </div>
             </motion.div>

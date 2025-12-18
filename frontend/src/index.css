@@ -1,15 +1,51 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-primary: var(--color-indigo-600);
-  --color-primary-hover: var(--color-indigo-700);
+  --font-sans: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Semantic Colors */
+  --color-background: var(--bg-main);
+  --color-surface: var(--bg-card);
+  --color-surface-hover: var(--bg-card-hover);
+
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+
+  --color-border: var(--border-color);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
 }
 
 :root {
+  /* Font Family - Prepend Inter if not loaded, fallback to Jakarta */
   font-family: var(--font-sans);
+
+  /* Light Mode Variables */
+  --bg-main: #f8fafc;
+  /* slate-50 */
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  /* slate-100 */
+
+  --text-main: #0f172a;
+  /* slate-900 */
+  --text-muted: #64748b;
+  /* slate-500 */
+
+  --border-color: #e2e8f0;
+  /* slate-200 */
+
+  --primary: #4f46e5;
+  /* indigo-600 */
+  --primary-hover: #4338ca;
+  /* indigo-700 */
+  --primary-light: #e0e7ff;
+  /* indigo-100 */
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -20,6 +56,99 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark {
+  /* Dark Mode Variables */
+  --bg-main: #020617;
+  /* slate-950 */
+  --bg-card: #0f172a;
+  /* slate-900 */
+  --bg-card-hover: #1e293b;
+  /* slate-800 */
+
+  --text-main: #f8fafc;
+  /* slate-50 */
+  --text-muted: #94a3b8;
+  /* slate-400 */
+
+  --border-color: #1e293b;
+  /* slate-800 */
+
+  --primary: #6366f1;
+  /* indigo-500 for better contrast in dark */
+  --primary-hover: #818cf8;
+  /* indigo-400 */
+  --primary-light: #312e81;
+  /* indigo-900 */
+}
+
 body {
-  @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen;
+  @apply bg-background text-text-main min-h-screen transition-colors duration-300;
+}
+
+/* Custom Scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
+
+/* Base Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold tracking-tight text-text-main;
+}
+
+/* Global Transition for basic colors */
+*,
+*::before,
+*::after {
+  /* Careful with global transitions on everything, can be slow. 
+     Better to apply to specific properties or container roots. */
+  border-color: var(--border-color);
+}
+
+/* Animation Utilities */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }
