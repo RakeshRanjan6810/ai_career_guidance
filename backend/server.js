@@ -1,5 +1,5 @@
 require('dotenv').config();
-// Restart trigger for retry update
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');

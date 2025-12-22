@@ -97,7 +97,7 @@ exports.generatePortfolioSummary = async (req, res) => {
 
         let aiResponseText = "";
 
-        if (process.env.GROQ_API_KEY) {
+        if (process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY) {
             const response = await generateWithRetry(prompt, "Act as an expert career portfolio writer.");
             aiResponseText = response.text();
             res.json({ success: true, data: aiResponseText.trim() });

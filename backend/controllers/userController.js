@@ -22,7 +22,7 @@ exports.getUserProfile = async (req, res) => {
     }
 };
 
-const cloudinary = require('../utils/cloudinary');
+
 
 // @desc    Update user profile
 // @route   PUT /api/auth/profile
@@ -42,26 +42,7 @@ exports.updateUserProfile = async (req, res) => {
             user.experience = req.body.experience || user.experience;
             user.targetCareer = req.body.targetCareer || user.targetCareer;
             user.interests = req.body.interests || user.interests;
-
-            // Handle Profile Picture Upload
-            if (req.body.profilePicture && req.body.profilePicture.startsWith('data:image')) {
-                try {
-                    const uploadResponse = await cloudinary.uploader.upload(req.body.profilePicture, {
-                        folder: 'ai_career_coach/profiles',
-                        public_id: `user_${user._id}`,
-                        overwrite: true,
-                        transformation: [{ width: 500, height: 500, crop: 'limit' }]
-                    });
-                    user.profilePicture = uploadResponse.secure_url;
-                } catch (uploadError) {
-                    console.error("Cloudinary Upload Error:", uploadError);
-                    // Don't fail the whole request, just keep old image or failing silently? 
-                    // Better to warn but maybe user.profilePicture remains unchanged if upload fails.
-                }
-            } else if (req.body.profilePicture) {
-                // If it's just a URL (not base64), or empty, update it directly
-                user.profilePicture = req.body.profilePicture;
-            }
+            user.profilePicture = req.body.profilePicture || user.profilePicture;
 
             if (req.body.password) {
                 user.password = req.body.password;

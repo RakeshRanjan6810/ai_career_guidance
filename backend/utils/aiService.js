@@ -2,13 +2,16 @@ const { OpenAI } = require('openai');
 const fs = require('fs');
 const path = require('path');
 
-// Initialize AI Client (xAI)
+// Initialize AI Client (Supports Groq or OpenAI)
+const useGroq = !!process.env.GROQ_API_KEY;
 const openai = new OpenAI({
-    apiKey: process.env.GROQ_API_KEY,
-    baseURL: "https://api.groq.com/openai/v1"
+    apiKey: process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY,
+    baseURL: useGroq ? "https://api.groq.com/openai/v1" : undefined // Undefined uses default OpenAI
 });
 
-const MODELS_TO_TRY = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"];
+const MODELS_TO_TRY = useGroq
+    ? ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
+    : ["gpt-4o-mini", "gpt-3.5-turbo"];
 
 const generateWithRetry = async (prompt, systemInstruction = "You are a helpful AI assistant.") => {
     for (const modelName of MODELS_TO_TRY) {

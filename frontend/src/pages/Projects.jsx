@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Briefcase, Sparkles, Plus, Save, Loader, Trash2, Activity, CheckCircle } from 'lucide-react';
+import { Briefcase, Sparkles, Plus, Save, Loader, Trash2, Activity, CheckCircle, Play } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Projects = () => {

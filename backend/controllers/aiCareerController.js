@@ -4,7 +4,7 @@ const User = require('../models/User');
 exports.getAIRecommendations = async (req, res) => {
     const { interests, skills, education, experience, country, hours_per_week, target_career } = req.body;
 
-    if (!process.env.GROQ_API_KEY) {
+    if (!process.env.GROQ_API_KEY && !process.env.OPENAI_API_KEY) {
         return res.status(500).json({ message: "AI API Keys missing on server" });
     }
 

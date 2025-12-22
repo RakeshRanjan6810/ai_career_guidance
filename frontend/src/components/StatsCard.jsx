@@ -11,8 +11,8 @@ const StatsCard = ({ title, value, change, trend, icon: Icon, color }) => {
             className="bg-surface rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow"
         >
             <div className="flex justify-between items-start mb-4">
-                <div className={`p-3 rounded-xl ${color} bg-opacity-10 dark:bg-opacity-20`}>
-                    <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
+                <div className={`p-3 rounded-xl ${color} bg-opacity-90 shadow-lg shadow-black/10`}>
+                    <Icon className="w-6 h-6 text-white" />
                 </div>
                 <div className={`flex items-center gap-1 text-sm font-medium ${isPositive ? 'text-emerald-500' : 'text-rose-500'}`}>
                     {isPositive ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}

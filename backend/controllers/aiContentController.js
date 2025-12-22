@@ -27,7 +27,7 @@ exports.generateProjectDescription = async (req, res) => {
 
         let aiResponseText = "";
 
-        if (process.env.GROQ_API_KEY) {
+        if (process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY) {
             const response = await generateWithRetry(prompt, "Act as a Senior Technical Lead.");
             aiResponseText = response.text();
         } else {
@@ -93,7 +93,7 @@ exports.generateCourseDetails = async (req, res) => {
 
         let aiResponseText = "";
 
-        if (process.env.GROQ_API_KEY) {
+        if (process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY) {
             const response = await generateWithRetry(prompt, "Act as an Expert Curriculum Designer.");
             aiResponseText = response.text();
         } else {

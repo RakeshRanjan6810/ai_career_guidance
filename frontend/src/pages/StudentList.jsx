@@ -334,8 +334,8 @@ const StudentList = () => {
 // ... (EditStudentModal & ViewStudentModal components - ensure they are preserved) ...
 
 const AssignProjectModal = ({ student, onClose }) => {
-    const [topic, setTopic] = useState(student.targetCareer || (student.interests && student.interests[0]) || 'General Web Dev');
-    const [difficulty, setDifficulty] = useState('Basic');
+    const [topic, setTopic] = useState(student.targetCareer || (student.interests && student.interests.length > 0 ? student.interests[0] : 'Web Development'));
+    const [difficulty, setDifficulty] = useState('Intermediate');
     const [generating, setGenerating] = useState(false);
     const [aiResult, setAiResult] = useState(null);
 
@@ -352,7 +352,7 @@ const AssignProjectModal = ({ student, onClose }) => {
                 body: JSON.stringify({
                     title: `Custom Project for ${student.name}: ${topic}`,
                     difficulty: difficulty,
-                    techStack: student.skills ? student.skills.join(', ') : 'General'
+                    techStack: student.skills && student.skills.length > 0 ? student.skills.join(', ') : 'React, Node.js'
                 })
             });
 
@@ -360,10 +360,11 @@ const AssignProjectModal = ({ student, onClose }) => {
             if (result.success) {
                 setAiResult(result.data);
             } else {
-                toast.error('Generation Failed');
+                toast.error(result.message || 'Generation Failed');
             }
         } catch (error) {
-            toast.error('AI Error');
+            console.error(error);
+            toast.error('AI Service Error. Please try again.');
         } finally {
             setGenerating(false);
         }

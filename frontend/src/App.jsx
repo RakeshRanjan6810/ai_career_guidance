@@ -152,7 +152,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        // redeploy trigger
+
 
         <AnimatedRoutes />
       </Router>

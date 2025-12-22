@@ -17,8 +17,17 @@ const Settings = () => {
         role: 'student'
     });
     const [password, setPassword] = useState('');
+    const [experiences, setExperiences] = useState([]); // New state for experience
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
+
+    // Initial Empty Experience Object
+    const initialExperience = {
+        role: '',
+        company: '',
+        period: '',
+        description: ''
+    };
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -53,6 +62,9 @@ const Settings = () => {
                         assignedInstructor: userData.assignedInstructor ? (userData.assignedInstructor.name || userData.assignedInstructor) : 'Not Assigned',
                         activityLogs: userData.activityLogs || []
                     });
+
+                    // Set Experiences if available
+                    setExperiences(userData.experience || []);
                 }
             } catch (err) {
                 console.error("Failed to fetch fresh profile:", err);
@@ -96,6 +108,7 @@ const Settings = () => {
                     location: user.location,
                     bio: user.bio,
                     profilePicture: user.profilePicture,
+                    experience: experiences, // Include experience in update
                     password: password || undefined
                 })
             });
@@ -113,6 +126,21 @@ const Settings = () => {
         } catch (err) {
             setError('Server error');
         }
+    };
+
+    const handleExperienceChange = (index, field, value) => {
+        const newExperiences = [...experiences];
+        newExperiences[index][field] = value;
+        setExperiences(newExperiences);
+    };
+
+    const addExperience = () => {
+        setExperiences([...experiences, { ...initialExperience }]);
+    };
+
+    const removeExperience = (index) => {
+        const newExperiences = experiences.filter((_, i) => i !== index);
+        setExperiences(newExperiences);
     };
 
     const handleDelete = async () => {
@@ -262,56 +290,154 @@ const Settings = () => {
                         />
                     </div>
 
-                    {/* Academic & Career */}
-                    <div className="border-t border-slate-100 dark:border-slate-800 pt-6">
-                        <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-4">Academic & Career Goals</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Education</label>
-                                <input
-                                    type="text"
-                                    value={user.education}
-                                    onChange={(e) => setUser({ ...user, education: e.target.value })}
-                                    placeholder="University / Degree"
-                                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                                />
+                    {/* Role Specific Sections */}
+                    {user.role === 'student' ? (
+                        <>
+                            {/* Academic & Career (Student Only) */}
+                            <div className="border-t border-slate-100 dark:border-slate-800 pt-6">
+                                <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-4">Academic & Career Goals</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Education</label>
+                                        <input
+                                            type="text"
+                                            value={user.education}
+                                            onChange={(e) => setUser({ ...user, education: e.target.value })}
+                                            placeholder="University / Degree"
+                                            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Target Career</label>
+                                        <input
+                                            type="text"
+                                            value={user.targetCareer}
+                                            onChange={(e) => setUser({ ...user, targetCareer: e.target.value })}
+                                            placeholder="e.g. Machine Learning Engineer"
+                                            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Target Career</label>
-                                <input
-                                    type="text"
-                                    value={user.targetCareer}
-                                    onChange={(e) => setUser({ ...user, targetCareer: e.target.value })}
-                                    placeholder="e.g. Machine Learning Engineer"
-                                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                                />
-                            </div>
-                        </div>
-                    </div>
 
-                    {/* Skills & Interests */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Skills (comma separated)</label>
-                            <input
-                                type="text"
-                                value={user.skills}
-                                onChange={(e) => setUser({ ...user, skills: e.target.value })}
-                                placeholder="e.g. Python, React, Data Analysis"
-                                className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Interests (comma separated)</label>
-                            <input
-                                type="text"
-                                value={user.interests}
-                                onChange={(e) => setUser({ ...user, interests: e.target.value })}
-                                placeholder="e.g. AI, Robotics, Design"
-                                className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                            />
-                        </div>
-                    </div>
+                            {/* Skills & Interests (Student) */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Skills (comma separated)</label>
+                                    <input
+                                        type="text"
+                                        value={user.skills}
+                                        onChange={(e) => setUser({ ...user, skills: e.target.value })}
+                                        placeholder="e.g. Python, React, Data Analysis"
+                                        className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Interests (comma separated)</label>
+                                    <input
+                                        type="text"
+                                        value={user.interests}
+                                        onChange={(e) => setUser({ ...user, interests: e.target.value })}
+                                        placeholder="e.g. AI, Robotics, Design"
+                                        className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {/* Skills Only (Mentor) */}
+                            <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Skills / Expertise (comma separated)</label>
+                                <input
+                                    type="text"
+                                    value={user.skills}
+                                    onChange={(e) => setUser({ ...user, skills: e.target.value })}
+                                    placeholder="e.g. Leadership, Python, System Design"
+                                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                />
+                            </div>
+
+                            {/* Professional Experience (Mentor Only) */}
+                            <div className="border-t border-slate-100 dark:border-slate-800 pt-6">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h4 className="text-base font-semibold text-slate-800 dark:text-slate-200">Professional Experience</h4>
+                                    <button
+                                        type="button"
+                                        onClick={addExperience}
+                                        className="text-sm text-indigo-600 dark:text-indigo-400 font-medium hover:underline"
+                                    >
+                                        + Add Position
+                                    </button>
+                                </div>
+
+                                <div className="space-y-6">
+                                    {experiences.map((exp, index) => (
+                                        <div key={index} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl relative border border-slate-200 dark:border-slate-700">
+                                            <button
+                                                type="button"
+                                                onClick={() => removeExperience(index)}
+                                                className="absolute top-4 right-4 text-slate-400 hover:text-rose-500 transition-colors"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                                                <div>
+                                                    <label className="block text-xs font-medium text-slate-500 uppercase mb-1">Role / Title</label>
+                                                    <input
+                                                        type="text"
+                                                        value={exp.role}
+                                                        onChange={(e) => handleExperienceChange(index, 'role', e.target.value)}
+                                                        placeholder="e.g. Senior Engineer"
+                                                        className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-medium text-slate-500 uppercase mb-1">Company</label>
+                                                    <input
+                                                        type="text"
+                                                        value={exp.company}
+                                                        onChange={(e) => handleExperienceChange(index, 'company', e.target.value)}
+                                                        placeholder="e.g. Google"
+                                                        className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <label className="block text-xs font-medium text-slate-500 uppercase mb-1">Period</label>
+                                                <input
+                                                    type="text"
+                                                    value={exp.period}
+                                                    onChange={(e) => handleExperienceChange(index, 'period', e.target.value)}
+                                                    placeholder="e.g. 2020 - Present"
+                                                    className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <label className="block text-xs font-medium text-slate-500 uppercase mb-1">Description</label>
+                                                <textarea
+                                                    value={exp.description}
+                                                    onChange={(e) => handleExperienceChange(index, 'description', e.target.value)}
+                                                    placeholder="Key responsibilities and achievements..."
+                                                    rows="2"
+                                                    className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 resize-none"
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    {experiences.length === 0 && (
+                                        <div className="text-center py-8 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/30 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
+                                            No experience added yet.
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </>
+                    )}
 
                     {/* Password Change */}
                     <div className="border-t border-slate-100 dark:border-slate-800 pt-6">

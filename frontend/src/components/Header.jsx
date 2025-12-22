@@ -57,10 +57,10 @@ const Header = () => {
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="h-16 bg-surface border-b border-border flex items-center justify-between px-8 fixed w-[calc(100%-16rem)] ml-64 z-20 transition-colors"
+            className="h-16 bg-surface border-b border-border flex items-center justify-between px-8 fixed top-0 w-[calc(100%-16rem)] ml-64 z-20 transition-colors"
         >
-            <div className="text-sm font-medium text-text-muted">
-                Welcome back, <span className="text-text-main font-bold">{user?.name}</span>
+            <div className="text-lg font-bold text-text-main">
+                Dashboard Overview
             </div>
 
             <div className="flex items-center gap-4">
